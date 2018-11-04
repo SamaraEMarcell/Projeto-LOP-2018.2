@@ -1,0 +1,47 @@
+var pulo = false; 
+var yp = 0; 
+var xdo, ydo; 
+var contFrames = 0; 
+
+function setup() {
+createCanvas(500, 480);
+xdo = 50;
+ydo = 440; 
+frameRate(30);
+}
+function draw() {
+background(200);
+fill(255,0,0);
+stroke(0, 0, 255);
+ellipse(xdo,ydo+yp,30,60); 
+
+if ( keyIsDown(RIGHT_ARROW) ) {
+xdo = xdo + 4; 
+if ( xdo > width ){
+xdo = 0; 
+}
+}
+
+if (keyIsDown(UP_ARROW) && (! pulo) ){ 
+pulo = true; 
+contFrames = 0; 
+}
+if( keyIsDown(LEFT_ARROW))
+{
+xdo = xdo - 4;
+if ( xdo < 0 ){
+xdo = width
+}
+}
+if (pulo) {
+contFrames++; 
+// movimenta o pulo / tiro 
+yp = 0.5*(contFrames)*(contFrames - 30);
+// se o pulo sumir na tela 
+if (yp > 0) {
+// habilida a ocorrência de um novo pulo 
+pulo = false;
+yp = 0;
+}
+}  
+}

@@ -1,0 +1,16 @@
+ETAPA 1
+
+function setup() {
+	createCanvas(640, 480);
+	background(200);
+}
+
+function draw() {
+	fill(255,0,0);
+	stroke(0, 0, 255);
+	ellipse(150, 420, 60, 100);	
+	stroke(0,0,255);
+	fill(255, 0, 0);
+	rect(400, 390, 80, 80);
+}
+  
