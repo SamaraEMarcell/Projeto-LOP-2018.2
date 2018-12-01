@@ -1,70 +1,146 @@
 var pulo = false; 
 var yp = 0; 
-var xdo, ydo;
+var xdo, ydo; 
 var contFrames = 0; 
 var vidas = 5; 
 var pontos = 0;
+var contFrames = 0; 
+var raioMaior = 25; 
+var linha = false;
+var p1x = 50;
+var py = 400;
+var p2x = 100;
+var p1x2 = 150;
+var py2 = 380;
+var p2x2 = 200;
+var p1x3 = 250;
+var py3 = 360;
+var p2x3 = 300;
+var p1x4 = 350;
+var py4 = 340;
+var p2x4 = 400;
+var p1x5 = 450;
+var py5 = 295;
+var p2x5 = 500;
+var p1x6 = 350;
+var py6 = 275;
+var p2x6 = 400;
+var p1x7 = 250;
+var py7 = 245;
+var p2x7 = 300;
+var p1x8 = 150;
+var py8 = 225;
+var p2x8 = 200;
+var p1x9 = 50;
+var py9 = 205;
+var p2x9 = 100;
+var p1x10= 0
+var py10= 175;
+var p2x10= 50;
+var i;
+var px1 = [];
+var px2 = [];
+var py1 = [];
+var pontos = 0; 
+var nivel = 1; 
+var barreiraDePontos = 100;
+var tempo = 0;
 
-var x, y;
-var colisao = false; 
-var dx; 
-var dy; 
-
+function colisaoAcimaDaLinha(x,y,x1,x2,yl){ 
+   // verifica se está em uma altura mínima da reta 
+  if (x > x1 && x < x2 && yl - y > 0 && yl - y < raioMaior) {
+  return true;     
+  }
+  else {
+    return false;
+  }
+}
 
 function setup() {
 createCanvas(500, 480);
-xdo = 40;
+xdo = 10;
 ydo = 440; 
- 
-xInimigo = width; 
-yInimigo = 410; 
- 
-dx = 8;
-dy = 10;
-
-frameRate(25);
+frameRate(30);
+px1[0] = p1x;
+px1[1] = p1x2;
+px1[2] = p1x3;
+px1[3] = p1x4;
+px1[4] = p1x5;
+px1[5] = p1x6;
+px1[6] = p1x7;
+px1[7] = p1x8;
+px1[8] = p1x9;
+px1[9] = p1x10; 
+px2[0] = p2x;
+px2[1] = p2x2;
+px2[2] = p2x3;
+px2[3] = p2x4;
+px2[4] = p2x5;
+px2[5] = p2x6;
+px2[6] = p2x7;
+px2[7] = p2x8;
+px2[8] = p2x9;
+px2[9] = p2x10;
+py1[0] = py;
+py1[1] = py2;
+py1[2] = py3;
+py1[3] = py4;
+py1[4] = py5;
+py1[5] = py6;
+py1[6] = py7;
+py1[7] = py8;
+py1[8] = py9;
+py1[9] = py10;
+  
 }
-
 function draw() {
-background(255,187,255);
+background(0);
 fill(112,128,144);
 stroke(112, 128, 144);
-ellipse(xdo,ydo+yp,30,60); 
+ellipse(xdo,ydo+yp,30,30);
 textSize(32);
 fill(127,255,212);
 stroke(127,255,212);
-text("Vidas: "+vidas, 10, 60);
-text("Pontos: "+pontos, 10, 90);
-  
- x=xdo+dx;
- y=ydo+dy; 
-
-
- 
- if ( dist(xdo,ydo,xInimigo,yInimigo) < 40 ) {
-     if ( colisao == false) { 
-       colisao = true; 
-     }
- }
- if (xdo==xInimigo){
-   vidas=vidas-1;
- }
-  
-fill(255,230,0); 
- rect(xInimigo, yInimigo, 30, 60); 
- 
-xInimigo = xInimigo - 5; 
-if ( xInimigo < 0 ) {
- xInimigo = random(-30,-30);
-  if ( xInimigo < 0 ){
-xInimigo = width
-  }
-  }
+text("Vidas: "+vidas, 150,30)
+text("Pontos: "+pontos,290,30)
+textSize(32);
+fill(127,255,212);
+text("Nível: "+nivel, 10, 30);
+strokeWeight(4); 
+stroke(255); 
+line(p1x,py,p2x,py); 
+strokeWeight(4); 
+stroke(255); 
+line(p1x2,py2,p2x2,py2); 
+strokeWeight(4); 
+stroke(255); 
+line(p1x3,py3,p2x3,py3); 
+strokeWeight(4); 
+stroke(255); 
+line(p1x4,py4,p2x4,py4); 
+strokeWeight(4); 
+stroke(255); 
+line(p1x5,py5,p2x5,py5); 
+strokeWeight(4); 
+stroke(255); 
+line(p1x6,py6,p2x6,py6); 
+strokeWeight(4); 
+stroke(255); 
+line(p1x7,py7,p2x7,py7); 
+strokeWeight(4); 
+stroke(255); 
+line(p1x8,py8,p2x8,py8);   
+strokeWeight(4); 
+stroke(255); 
+line(p1x9,py9,p2x9,py9);
+strokeWeight(4); 
+stroke(255); 
+line(p1x10,py10,p2x10,py10); 
 
 if ( keyIsDown(RIGHT_ARROW) ) {
 xdo = xdo + 4; 
 if ( xdo > width ){
-xdo = 0; 
+xdo = width; 
 }
 }
 
@@ -76,18 +152,45 @@ if( keyIsDown(LEFT_ARROW))
 {
 xdo = xdo - 4;
 if ( xdo < 0 ){
-xdo = width
+xdo = 0
 }
 }
 if (pulo) {
 contFrames++; 
 // movimenta o pulo / tiro 
-yp = 0.5*(contFrames)*(contFrames - 30);
+yp = 0.5*(contFrames)*(contFrames - 35);
 // se o pulo sumir na tela 
 if (yp > 0) {
-// habilida a ocorr�ncia de um novo pulo 
+// habilida a ocorrência de um novo pulo 
 pulo = false;
 yp = 0;
 }
-}  
 }
+for(i=0;i<10;i++) {
+    if (colisaoAcimaDaLinha(xdo,ydo+yp,px1[i],px2[i],py1[i]) && ! linha) {
+      ydo = py1[i]- raioMaior+1; 
+      yp = 0; 
+      linha = true;
+      pulo = false;
+    }
+      if ( linha && (  xdo < px1[i] || xdo > px2[i] )) {
+    	linha = false;
+    }
+      if ( !linha) {
+      ydo = ydo + 1;
+      if (ydo > 440) {
+        ydo = 440; 
+      }
+      }
+
+} 
+  if(colisaoAcimaDaLinha(xdo,ydo+yp,px1[i],p2x10,py10) && ! linha) {
+    pontos = pontos + 200;
+  }
+ if (pontos==barreiraDePontos) {
+    nivel=nivel+1;
+    barreiraDePontos = barreiraDePontos + 100; 
+  }
+
+  }     
+
