@@ -184,7 +184,7 @@ for(i=0;i<10;i++) {
       }
 
 } 
-  if(colisaoAcimaDaLinha(xdo,ydo+yp,px1[i],p2x10,py10) && ! linha) {
+  if(colisaoAcimaDaLinha(xdo,ydo+yp,p1x10,p2x10,py10) && ! linha) {
     pontos = pontos + 200;
   }
  if (pontos==barreiraDePontos) {
