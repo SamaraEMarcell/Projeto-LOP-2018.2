@@ -47,9 +47,10 @@ var tela = 1;
 var img;
 var img2;
 var img3;
+var img4;
 
 function colisaoAcimaDaLinha(x,y,x1,x2,yl){
-   // verifica se está em uma altura mínima da reta
+   // verifica se estÃ¡ em uma altura mÃ­nima da reta
   if (x > x1 && x < x2 && yl - y > 0 && yl - y < raioMaior) {
   return true;    
   }
@@ -62,6 +63,7 @@ function preload() {
 	img = loadImage("ceu.png");
 	img2 = loadImage("galaxia.png");
 	img3 = loadImage("vitoria.png");
+	img4 = loadImage("gameover.png");
 }
 
 function setup() {
@@ -108,7 +110,7 @@ background(img);
     textSize(40);
     fill(255);
     text("THE STEPS", 140, 160);
-    text("aperte enter para começar",20,250)
+    text("aperte enter para comeÃ§ar",20,250)
     if (keyIsDown(ENTER) ) {
        tela = 2;  
     }
@@ -125,7 +127,7 @@ text("Vidas: "+vidas, 150,30)
 text("Pontos: "+pontos,290,30)
 textSize(32);
 fill(0,250,154);
-text("Nível: "+nivel, 10, 30);
+text("NÃ­vel: "+nivel, 10, 30);
 strokeWeight(4);
 stroke(255);
 line(p1x,py,p2x,py);
@@ -165,7 +167,7 @@ text("Vidas: "+vidas, 150,30)
 text("Pontos: "+pontos,290,30)
 textSize(32);
 fill(0,250,154);
-text("Nível: "+nivel, 10, 30);
+text("NÃ­vel: "+nivel, 10, 30);
 strokeWeight(4);
 stroke(255);
 line(p1x,py,p2x,py);
@@ -210,7 +212,7 @@ text("Vidas: "+vidas, 150,30)
 text("Pontos: "+pontos,290,30)
 textSize(32);
 fill(0,250,154);
-text("Nível: "+nivel, 10, 30);
+text("NÃ­vel: "+nivel, 10, 30);
 strokeWeight(4);
 stroke(255);
 line(p1x,py,p2x,py);
@@ -261,7 +263,7 @@ text("Vidas: "+vidas, 150,30)
 text("Pontos: "+pontos,290,30)
 textSize(32);
 fill(0,250,154);
-text("Nível: "+nivel, 10, 30);
+text("NÃ­vel: "+nivel, 10, 30);
 strokeWeight(4);
 stroke(255);
 line(p1x,py,p2x,py);
@@ -318,7 +320,7 @@ text("Vidas: "+vidas, 150,30)
 text("Pontos: "+pontos,290,30)
 textSize(32);
 fill(0,250,154);
-text("Nível: "+nivel, 10, 30);
+text("NÃ­vel: "+nivel, 10, 30);
 strokeWeight(4);
 stroke(255);
 line(p1x,py,p2x,py);
@@ -353,7 +355,7 @@ line(p1x10,py10,p2x10,py10);
     fill(0,250,154);
 stroke(0);
     text("Segundos: "+(Math.floor(tempo/30)),10, 60);
-    if(tempo==400) {
+    if(tempo==500) {
       vidas = vidas - 3;
     }
     if(vidas<=0) {
@@ -368,6 +370,9 @@ stroke(0);
   }
    if ( tela == 7) {
     background(img3);
+    textSize(32);
+    fill(255);
+    text("aperte F5 para voltar ao menu",30,350);
     if (keyIsDown(32) ) {
        tela = 1;
        tempo = 0;
@@ -375,6 +380,9 @@ stroke(0);
   }
   if(tela==8) {
     background(img4);
+    textSize(32);
+    fill(255);
+    text("aperte F5 para voltar ao menu",30,360)
     if (keyIsDown(32) ) {
        tela = 1;
        tempo = 0;
@@ -404,7 +412,7 @@ if (pulo) {
  yp = 0.5*(contFrames)*(contFrames - 35);
  // se o pulo sumir na tela
  if (yp > 0) {
- // habilida a ocorrência de um novo pulo
+ // habilida a ocorrÃªncia de um novo pulo
  pulo = false;
  yp = 0;
  }
